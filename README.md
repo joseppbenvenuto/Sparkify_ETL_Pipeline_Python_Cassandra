@@ -1,4 +1,4 @@
-# Sparkify ETL Pipeline Python Cassandra
+# Sparkify ETL Pipeline Python & Cassandra
 
 ## Project Description
 
