@@ -18,14 +18,13 @@ Skarkify is a startup that wants to analyze song and user activity data that the
 * **etl.py -** Final ETL pipeline script that extracts data from CSV files, transforms the data appropriately to allow for future analysis, and loads the data into Sparkify's keyspace via pre-defined tables.
 * **cassandra_queries.py -** Contains all cassandra queries used in the ETL pipeline.
 
-## Schema - Star
+## Tables
 
-#### Fact Table:
-* **songplays -** songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent
-Dimension Tables
+1) **table_2_3_1_1 -** artist (text), song (text), length (decimal), sessionId (int), itemInSession (int)
+    * **query -** Table to query the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
 
-#### Dimension Tables:
-* **users -** user_id, first_name, last_name, gender, level
-* **songs -** song_id, title, artist_id, year, duration
-* **artists -** artist_id, name, location, latitude, longitude
-* **time -** start_time, hour, day, week, month, year, weekday
+2) **table_2_3_2_2 -** song_id (text), song (text), first_name (text), last_name (text), itemInSession (int), userId (int), sessionId (int)
+    * **query -** Table to query name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
+    
+3) **table_2_3_3_3 -** first_name (text), last_name (text), song (text), userId (int)
+    * **query -** Table to query every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
