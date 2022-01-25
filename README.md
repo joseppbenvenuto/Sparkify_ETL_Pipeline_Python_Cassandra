@@ -23,8 +23,8 @@ Skarkify is a startup that wants to analyze song and user activity data that the
 1) **songs_by_session_and_item -** sessionId (int - partition), itemInSession (int - partition), artist (text), song (text), length (decimal)
     * **query -** Table to query the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
 
-2) **songs_by_user_and_session -** userId (int - partition), sessionId (int - partition), itemInSession (int - Cluster), artist (text), song (text), first_name (text), last_name (text) 
+2) **songs_by_user_and_session -** userId (int - partition), sessionId (int - partition), itemInSession (int - cluster), artist (text), song (text), first_name (text), last_name (text) 
     * **query -** Table to query name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
     
-3) **songs_by_user -** song (text - partition), userId (int - Cluster), first_name (text), last_name (text)
+3) **songs_by_user -** song (text - partition), userId (int - cluster), first_name (text), last_name (text)
     * **query -** Table to query every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
