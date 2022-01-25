@@ -6,7 +6,7 @@ Skarkify is a startup that wants to analyze song and user activity data that the
 
 ## How to Run ETL Pipeline
 
-1) Run create_tables.py to create keyspace is it doesn't exist and drop all existing tables in the Sparkify keyspace followed by creating new tables. This will be the first step to get the ETL pipeline up and running and will only need to be used afterwards if the project needs to start from scratch while in development.
+1) Run create_tables.py to create keyspace if it doesn't exist and drop all existing tables in the Sparkify keyspace followed by creating new tables. This will be the first step to get the ETL pipeline up and running and will only need to be used afterwards if the project needs to start from scratch while in development.
 2) Run the test.ipynb Jupyter Notebook to test any ETL pipeline work completed by running the queries coded and observing the results.  
 3) With the initial batch of data in the event_data folder run the pipeline to extract, transform, and load the data into the Sparkify keysapce and their predefined tables.
 
@@ -20,11 +20,11 @@ Skarkify is a startup that wants to analyze song and user activity data that the
 
 ## Tables
 
-1) **song_sessionId338_itemInSession4 -** artist (text), song (text), length (decimal), sessionId (int), itemInSession (int)
+1) **song_sessionId338_itemInSession4 -** sessionId (int - partition), itemInSession (int - partition), artist (text), song (text), length (decimal)
     * **query -** Table to query the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
 
-2) **song_userId10_sessionId182 -** song_id (text), song (text), first_name (text), last_name (text), itemInSession (int), userId (int), sessionId (int)
+2) **song_userId10_sessionId182 -** userId (int - partition), sessionId (int - partition), itemInSession (int - Cluster), artist (text), song (text), first_name (text), last_name (text) 
     * **query -** Table to query name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
     
-3) **song_user_allHandsAgainstHisOwn -** first_name (text), last_name (text), song (text), userId (int)
+3) **song_user_allHandsAgainstHisOwn -** song (text - partition), userId (int - Cluster), first_name (text), last_name (text)
     * **query -** Table to query every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
